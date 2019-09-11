@@ -1,0 +1,19 @@
+{
+	"name": "Metric",
+  "version": "2.0.0",
+  "license": "MIT",
+  "author": "SDC (https://server-discord.com/)",
+  "main": "metric.js",
+	"private": true,
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/MegaVasiliy007/metric.git"
+  },
+	"dependencies": {
+		"discord.js": "latest",
+		"fs": "latest",
+		"mysql": "latest",
+		"mysql-utilities": "latest",
+		"canvas": "latest"
+	}
+}

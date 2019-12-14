@@ -34,7 +34,10 @@ module.exports = (client, msg) => {
 	}
 
 	let temp = `${msg.guild.id}${msg.author.id}${cmd.help.name}`;
-	if (client.userLib.talkedcool.has(temp)) return;
+	if (client.userLib.talkedcool.has(temp)) {
+		return;
+		msg.reply("Ошибка! Немного подождите перед использованием этой команды.");
+	}
 	client.userLib.talkedcool.add(temp);
 	setTimeout(() => {client.userLib.talkedcool.delete(temp);}, cmd.help.cooldown);
 

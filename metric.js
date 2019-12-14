@@ -14,7 +14,7 @@ client.userLib = {};
 
 client.userLib.discord = Discord;
 client.userLib.db = con;
-client.userLib.promise = require('/root/site/modules/promise');
+client.userLib.promise = require('../SDCBotsModules/promise');
 client.userLib.presenseCount = 1;
 
 client.userLib.talkedcool = new Set();

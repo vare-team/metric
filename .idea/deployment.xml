@@ -10,6 +10,8 @@
           <excludedPaths>
             <excludedPath local="true" path="$PROJECT_DIR$/node_modules" />
             <excludedPath local="true" path="$PROJECT_DIR$/package-lock.json" />
+            <excludedPath local="true" path="$PROJECT_DIR$/.floo" />
+            <excludedPath local="true" path="$PROJECT_DIR$/.flooignore" />
           </excludedPaths>
         </serverdata>
       </paths>

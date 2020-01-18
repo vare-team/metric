@@ -14,6 +14,7 @@ client.userLib = {};
 
 client.userLib.discord = Discord;
 client.userLib.db = con;
+client.userLib.request = require('request');
 client.userLib.promise = require('../SDCBotsModules/promise');
 client.userLib.presenseCount = 1;
 
@@ -22,6 +23,11 @@ client.userLib.talkedcool = new Set();
 client.userLib.sendlog = (log) => {
 	const now = new Date();
 	console.log(`${('00' + now.getHours()).slice(-2) + ':' + ('00' + now.getMinutes()).slice(-2) + ':' + ('00' + now.getSeconds()).slice(-2)} | Shard[${client.shard.id}] : ${log}`);
+};
+
+client.userLib.sendSDC = (servers, shards) => {
+	client.userLib.request.post({url: 'https://api.server-discord.com/v2/bots/'+client.user.id+'/stats', form: {servers, shards}, headers: {'Authorization':'SDC '+process.env.sdc}});
+	client.userLib.sendlog('{SDC} Send stats data');
 };
 
 client.userLib.presenseFunc = () => {

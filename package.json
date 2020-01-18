@@ -10,11 +10,12 @@
 		"url": "https://github.com/MegaVasiliy007/metric.git"
 	},
 	"dependencies": {
+		"canvas": "latest",
 		"discord.js": "latest",
 		"fs": "latest",
-		"mysql2": "latest",
 		"mysql-utilities": "latest",
-		"canvas": "latest"
+		"mysql2": "latest",
+		"request": "^2.88.0"
 	},
 	"scripts": {
 		"debug": "node ."

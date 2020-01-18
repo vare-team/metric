@@ -5,6 +5,8 @@ let lines = {width: 530, height: 329, x: 35, y: 367, xoff: 52, yoff: 32};
 
 lines.ycalc = (number, coff, min) => {return lines.y - ((number - min) * lines.yoff + (number - min)) / coff};
 
+let countOfDots = 11;
+
 exports.help = {
   tier: 0,
   cooldown: 5000,
@@ -16,6 +18,11 @@ exports.run = async (client, msg, args) => {
   let buffertext;
 
   args[0] = args[0].toLowerCase();
+
+  if (msg.author.id == '166610390581641217' && args[1]) {
+  	countOfDots = args[1];
+  	lines.xoff = 500/(args[1]-1);
+  }
 
   if (['added', 'removed', 'ups', 'guilds'].indexOf(args[0]) == -1) {
 		msg.reply(`Введен неправильный тип. Список доступных типов: **added**, **removed**, **ups**, **guilds**`);
@@ -41,7 +48,7 @@ exports.run = async (client, msg, args) => {
 	
 	let days = new Date();
 	days.setHours(0, 0, 0);
-	days.setDate(days.getDate() - 11);
+	days.setDate(days.getDate() - countOfDots);
 
 	let count = await client.userLib.promise(client.userLib.db, client.userLib.db.queryKeyValue, 'SELECT date, ?? FROM sdcstat WHERE date > ?', [args[0], days]);
 	count = count.res;
@@ -50,7 +57,7 @@ exports.run = async (client, msg, args) => {
 	
 	days.setDate(days.getDate() + 1);
 	
-	for (var i = 0; i < 11; i++) {
+	for (var i = 0; i < countOfDots; i++) {
 	  let flag = 1, sort = 0;
 	  for (var j = 0, length = Object.keys(count).length; j < length; j++) {
 	    if (days.getDate() == new Date(Object.keys(count)[j]).getDate()) {flag = 0; sort = count[Object.keys(count)[j]]}
@@ -96,7 +103,7 @@ exports.run = async (client, msg, args) => {
 	ctx.font = '8px DinPro';
 	ctx.fillStyle = '#FFFFFF';
 
-	for (var i = 0; i < 11; i++) { // Текст
+	for (var i = 0; i < countOfDots; i++) { // Текст
 		ctx.fillText(Math.round((rez.step*i + rez.min)*10)/10, 22 - ctx.measureText(Math.round((rez.step*i + rez.min)*10)/10).width, lines.y - lines.yoff * i - i - 2); //Шаги
 		ctx.fillText(Object.keys(countSort)[i], lines.x + i * lines.xoff + i - ctx.measureText(Object.keys(countSort)[i]).width / 2, 395); //Даты
 	}

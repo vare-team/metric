@@ -10,7 +10,8 @@ let countOfDots = 11;
 exports.help = {
   tier: 0,
   cooldown: 5000,
-  args: 1
+  args: 1,
+  command: 'stat'
 }
 
 exports.run = async (client, msg, args) => {
@@ -25,7 +26,7 @@ exports.run = async (client, msg, args) => {
   }
 
   if (['msg', 'joined', 'leaved', 'members', 'banned'].indexOf(args[0]) == -1) {
-		msg.reply(`Введен неправильный тип. Список доступных типов: **msg**, **joined**, **leaved**, **members**, **banned**`);
+		msg.reply(`Введён неверный аргумент. Список доступных аргументов: **msg**, **joined**, **leaved**, **members**, **banned**`);
 		return;
 	}
 

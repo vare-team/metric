@@ -28,6 +28,11 @@ module.exports = (client, msg) => {
 		return;
 	}
 
+	if (cmd.help.command == 'stat' && !args.length) {
+		msg.reply(`Не введён аргумент. Список доступных аргументов: **msg**, **joined**, **leaved**, **members**, **banned**`);
+		return;
+	}
+
 	if (cmd.help.args && !args.length) {
 		msg.reply("Ошибка! Отстутствует аргумент команды!");
 		return;

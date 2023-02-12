@@ -1,4 +1,8 @@
-node_modules
-package-lock.json
-.floo
-.flooignore
+# User-specific stuff
+.idea
+
+**/node_modules
+
+threads.json
+tickets.json
+mutes.json

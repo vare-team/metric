@@ -7,7 +7,7 @@ export default class CategoryEnum {
 	 * @return {boolean}
 	 */
 	static validate(name) {
-		return categoriesArray.has(name);
+		return categoriesArray.includes(name);
 	}
 
 	/**
@@ -18,9 +18,4 @@ export default class CategoryEnum {
 	}
 }
 
-const categoriesArray = [
-	'added',
-	'removed',
-	'guilds',
-	'ups',
-];
+const categoriesArray = ['added', 'removed', 'guilds', 'ups'];

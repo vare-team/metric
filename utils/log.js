@@ -1,4 +1,4 @@
-export default function(log, shardId) {
+export default function (log) {
 	const date = new Date();
 	console.log(
 		`${
@@ -11,6 +11,6 @@ export default function(log, shardId) {
 			('00' + date.getMinutes()).slice(-2) +
 			':' +
 			('00' + date.getSeconds()).slice(-2)
-		} : Shard[${shardId ?? discordClient.shard.ids[0]}] | ${log}`,
+		} : Shard[0] | ${log}`
 	);
 }

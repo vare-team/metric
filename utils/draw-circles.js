@@ -11,8 +11,9 @@ export function drawCircles(ctx, dates, resolution, lines) {
 	ctx.arc(x, y, radius, startAngle, endAngle);
 	ctx.fill();
 
-	let i = 1, length = Object.keys(dates).length;
-	for (; i < length; i++) { //Кружки
+	const length = Object.keys(dates).length;
+	for (let i = 1; i < length; i++) {
+		//Кружки
 		ctx.beginPath();
 
 		x = lines.x + i * lines.xoff + i;

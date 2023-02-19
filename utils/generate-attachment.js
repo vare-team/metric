@@ -17,8 +17,7 @@ const lines = new Lines(530, 329, 35, 367, 52, 32);
  * @return {Promise<Buffer>}
  */
 export default async function generateAttachment(text, category) {
-	if (!CategoryEnum.validate(category))
-		throw 'Category validation error';
+	if (!CategoryEnum.validate(category)) throw 'Category validation error';
 
 	const dates = {};
 	const days = new Date();
@@ -26,18 +25,19 @@ export default async function generateAttachment(text, category) {
 	days.setHours(0, 0, 0);
 	days.setDate(days.getDate() - dotsCount);
 
-	const dbResult = await db.many('SELECT date, ?? FROM sdcstat WHERE date > ?', [category, days]);
+	const dbResult = await db.many('SELECT date, ?? FROM sdcstat WHERE date > ? ORDER BY date DESC;', [category, days]);
 
 	days.setDate(days.getDate() + 1);
 
 	for (let i = 0; i < dotsCount; i++) {
-		let flag = 1, sort = 0;
-		let j = 0, length = Object.keys(dbResult).length;
+		let flag = 1;
+		let sort = 0;
+		const length = dbResult.length;
 
-		for (; j < length; j++) {
-			if (days.getDate() === new Date(Object.keys(dbResult)[j]).getDate()) {
+		for (let j = 0; j < length; j++) {
+			if (days.getDate() === dbResult[j].date.getDate()) {
 				flag = 0;
-				sort = dbResult[Object.keys(dbResult)[j]];
+				sort = dbResult[j][category];
 			}
 		}
 

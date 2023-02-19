@@ -17,7 +17,7 @@ export default class Lines {
 		this.yoff = yoff;
 	}
 
-	ycalc = (number, coff, min) => {
+	ycalc(number, coff, min) {
 		return this.y - ((number - min) * this.yoff + (number - min)) / coff;
-	};
+	}
 }

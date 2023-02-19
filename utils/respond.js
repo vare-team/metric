@@ -7,7 +7,8 @@ export default async function (interaction, text, category) {
 
 	if (!image) return;
 
-	await interaction.editReply({
+	await interaction.deleteReply();
+	await interaction.followUp({
 		files: [new AttachmentBuilder(image, { name: `sdcstat.png` })],
 		ephemeral: false,
 	});

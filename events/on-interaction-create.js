@@ -5,7 +5,7 @@ import upCountCommand from '../commands/up-count-command.js';
 
 const talkedCool = new Set();
 
-export default async function(interaction) {
+export default async function (interaction) {
 	if (!interaction.isCommand()) return;
 
 	const name = interaction.command.name;
@@ -13,7 +13,7 @@ export default async function(interaction) {
 
 	if (!command) return;
 
-	let temp = `${interaction.author.id}${name}`;
+	const temp = `${interaction.user.id}${name}`;
 	if (talkedCool.has(temp)) {
 		await interaction.reply({
 			content: 'Ошибка! Немного подождите перед использованием этой команды.',
@@ -28,7 +28,7 @@ export default async function(interaction) {
 	}, 5e3);
 
 	await interaction.deferReply();
-	await command();
+	await command(interaction);
 }
 
 /**
@@ -36,9 +36,8 @@ export default async function(interaction) {
  * @type {Object<string, (function(): Promise<*>)|*>}
  */
 export const commands = {
-	'guilds_added': guildsAddedCommand,
-	'guilds_removed': guildsRemovedCommand,
-	'guilds_count': guildsCountCommand,
-	'up_count': upCountCommand,
+	guilds_added: guildsAddedCommand,
+	guilds_removed: guildsRemovedCommand,
+	guilds_count: guildsCountCommand,
+	up_count: upCountCommand,
 };
-

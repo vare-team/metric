@@ -4,20 +4,41 @@
 	"license": "MIT",
 	"author": "SDC (https://server-discord.com/)",
 	"main": "metric.js",
+	"type": "module",
 	"private": true,
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/MegaVasiliy007/metric.git"
 	},
-	"dependencies": {
-		"canvas": "latest",
-		"discord.js": "latest",
-		"fs": "latest",
-		"mysql-utilities": "latest",
-		"mysql2": "latest",
-		"request": "^2.88.0"
-	},
 	"scripts": {
-		"debug": "node ."
-	}
+		"start": "node --unhandled-rejections=warn --experimental-specifier-resolution=node .",
+		"debug": "nodemon --unhandled-rejections=warn --experimental-specifier-resolution=node .",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix"
+	},
+	"dependencies": {
+		"canvas": "^2.11.2",
+		"discord.js": "^14.11.0",
+		"mysql2": "^3.3.0"
+	},
+	"devDependencies": {
+		"eslint": "^8.40.0",
+		"eslint-config-prettier": "^8.8.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"nodemon": "^2.0.22",
+		"prettier": "^2.8.8"
+	},
+	"optionalDependencies": {
+		"bufferutil": "^4.0.7",
+		"erlpack": "github:discord/erlpack",
+		"utf-8-validate": "^6.0.3",
+		"zlib-sync": "^0.1.8"
+	},
+	"engines": {
+		"node": ">=16"
+	},
+	"bugs": {
+		"url": "https://github.com/vare-team/tescall/issues"
+	},
+	"homepage": "https://github.com/vare-team/tescall#readme"
 }

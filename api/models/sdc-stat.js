@@ -14,8 +14,8 @@ export default class SdcStat extends Model {
 			},
 			{
 				sequelize,
-				modelName: this.constructor.name,
-				tableName: toSnakeCase(`${this.constructor.name}s`),
+				modelName: this.name,
+				tableName: toSnakeCase(`${this.name}s`),
 			}
 		);
 	}

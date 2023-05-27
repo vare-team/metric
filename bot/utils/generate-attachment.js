@@ -4,8 +4,8 @@ import Lines from '../classes/Lines.js';
 import { drawLines } from './draw-lines.js';
 import { drawCircles } from './draw-circles.js';
 import { drawText } from './draw-text.js';
-import db from '../services/db.js';
 import CategoryEnum from '../classes/CategoryEnum.js';
+import getApiInfo from '../services/get-api-info.js';
 
 registerFont('./DINPro.ttf', { family: 'Comic Sans' });
 const dotsCount = 11;
@@ -25,7 +25,7 @@ export default async function generateAttachment(text, category) {
 	days.setHours(0, 0, 0);
 	days.setDate(days.getDate() - dotsCount);
 
-	const dbResult = await db.many('SELECT date, ?? FROM sdcstat WHERE date > ? ORDER BY date DESC;', [category, days]);
+	const dbResult = await getApiInfo(category, days);
 
 	days.setDate(days.getDate() + 1);
 

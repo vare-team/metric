@@ -11,18 +11,18 @@
 		"url": "https://github.com/MegaVasiliy007/metric.git"
 	},
 	"scripts": {
-		"start": "node --unhandled-rejections=warn --experimental-specifier-resolution=node .",
-		"debug": "nodemon --unhandled-rejections=warn --experimental-specifier-resolution=node .",
-		"lint": "eslint .",
-		"lint:fix": "eslint . --fix"
+		"start": "node --unhandled-rejections=warn --experimental-specifier-resolution=node ..",
+		"debug": "../node_modules/.bin/nodemon --unhandled-rejections=warn --experimental-specifier-resolution=node .",
+		"lint": "../node_modules/.bin/eslint .",
+		"lint:fix": "../node_modules/.bin/eslint . --fix"
 	},
 	"dependencies": {
 		"canvas": "^2.11.2",
 		"discord.js": "^14.11.0",
-		"mysql2": "^3.3.0"
+		"undici": "^5.22.1"
 	},
 	"devDependencies": {
-		"eslint": "^8.40.0",
+		"eslint": "^8.41.0",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-prettier": "^4.2.1",
 		"nodemon": "^2.0.22",

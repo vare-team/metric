@@ -4,6 +4,7 @@ import { AppError, errorCodes, SystemError } from './utils/errors.js';
 import ups from './routes/ups.js';
 import guilds from './routes/guilds.js';
 import routeToCategory from './middleware/route-to-category.js';
+import { initializeDbModels } from './utils/db.js';
 
 const port = Number(process.env.PORT) ?? 3000;
 const app = express();
@@ -26,6 +27,20 @@ if (app.get('env') === 'production') {
 	app.use(logger('[:date[clf]] :method :url :status :body :response-time ms'));
 }
 
+// ==== on server start functions
+(async function initDb() {
+	try {
+		await initializeDbModels();
+	} catch (e) {
+		if (app.get('env') !== 'test') {
+			console.log(e);
+			console.log('COULD NOT CONNECT TO THE DB, retrying in 5 seconds');
+		}
+		setTimeout(initDb, 5000);
+	}
+})();
+// ====
+
 app
 	.use(express.json())
 	.use(express.urlencoded({ extended: true }))
@@ -33,11 +48,6 @@ app
 
 app.use('/ups', ups);
 app.use('/guilds', guilds);
-
-/*.get('/ups', asyncRoute(getCount('ups')))
-	.get('/guilds-count', asyncRoute(getCount('guilds')))
-	.get('/guilds-added', asyncRoute(getCount('added')))
-	.get('/guilds-removed', asyncRoute(getCount('removed')));*/
 
 // Handle 404 AND 500
 app

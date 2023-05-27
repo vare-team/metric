@@ -32,13 +32,13 @@ export default async function generateAttachment(text, category) {
 	for (let i = 0; i < dotsCount; i++) {
 		let flag = 1;
 		let sort = 0;
-		const length = dbResult.length;
 
-		for (let j = 0; j < length; j++) {
-			if (days.getDate() === dbResult[j].date.getDate()) {
-				flag = 0;
-				sort = dbResult[j][category];
-			}
+		const daysStrings = days.toISOString().split('T')[0];
+		for (const [k, v] of Object.entries(dbResult)) {
+			if (daysStrings !== k) continue;
+
+			flag = 0;
+			sort = v;
 		}
 
 		dates[('00' + days.getDate()).slice(-2) + '.' + ('00' + (days.getMonth() + 1)).slice(-2)] = flag ? 0 : sort;

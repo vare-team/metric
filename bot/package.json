@@ -12,9 +12,9 @@
 	},
 	"scripts": {
 		"start": "node --unhandled-rejections=warn --experimental-specifier-resolution=node ..",
-		"debug": "../node_modules/.bin/nodemon --unhandled-rejections=warn --experimental-specifier-resolution=node .",
-		"lint": "../node_modules/.bin/eslint .",
-		"lint:fix": "../node_modules/.bin/eslint . --fix"
+		"debug": "nodemon --unhandled-rejections=warn --experimental-specifier-resolution=node .",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix"
 	},
 	"dependencies": {
 		"canvas": "^2.11.2",

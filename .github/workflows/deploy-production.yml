@@ -1,0 +1,45 @@
+name: Deploy production
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+#  deploy_bot:
+#    name: Deploy bot
+#    runs-on: self-hosted
+#
+#    steps:
+#      - name: Connect to server
+#        uses: appleboy/ssh-action@b87ddeff0013ea4c509514f51dd2d3f4eaf0e1d8
+#        with:
+#          host: ${{ secrets.HOST }}
+#          username: ${{ secrets.USERNAME }}
+#          password: ${{ secrets.PASSWORD }}
+#          port: 22
+#          script: |
+#            cd metric
+#            git pull origin master
+#            cd bot
+#            npm ci --production
+#            pm2 restart metric-bot
+
+  deploy_api:
+    name: Deploy api
+    runs-on: self-hosted
+
+    steps:
+      - name: Connect to server
+        uses: appleboy/ssh-action@b87ddeff0013ea4c509514f51dd2d3f4eaf0e1d8
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+            cd metric
+            git pull origin master
+            cd api
+            npm ci --production
+            pm2 restart metric-api

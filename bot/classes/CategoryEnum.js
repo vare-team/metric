@@ -24,4 +24,4 @@ export const categoriesDictionary = {
 	removed: categoriesArray[1],
 	guilds: categoriesArray[2],
 	ups: categoriesArray[3],
-}
+};

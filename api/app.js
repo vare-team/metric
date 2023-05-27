@@ -5,7 +5,7 @@ import ups from './routes/ups.js';
 import guilds from './routes/guilds.js';
 import routeToCategory from './middleware/route-to-category.js';
 
-const port = process.env.PORT;
+const port = Number(process.env.PORT) ?? 3000;
 const app = express();
 
 logger.token('body', req => {

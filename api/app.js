@@ -22,7 +22,7 @@ logger.token('body', req => {
 });
 
 if (app.get('env') === 'production') {
-	app.use(logger('[:date[clf]] :method :url-without-code :status :response-time ms'));
+	app.use(logger('[:date[clf]] :method :url :status :response-time ms'));
 } else if (app.get('env') === 'development' || app.get('env') === 'staging') {
 	app.use(logger('[:date[clf]] :method :url :status :body :response-time ms'));
 }

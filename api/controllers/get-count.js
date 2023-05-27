@@ -16,7 +16,7 @@ export default async function getCount({ category, query: { days } }, res) {
 		result.reduce(
 			(p, c) => ({
 				...p,
-				[c.date.toISOString().split('T')[0]]: c[category],
+				[c.date]: c[category],
 			}),
 			{}
 		)

@@ -5,6 +5,6 @@ import upsUpdate from '../controllers/ups-update.js';
 
 const router = new Router();
 
-router.route('/').get(asyncRoute(getCount)).post(asyncRoute(upsUpdate));
+router.route('/').get(asyncRoute(getCount)).put(asyncRoute(upsUpdate));
 
 export default router;

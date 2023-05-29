@@ -1,9 +1,8 @@
 import SdcStat from '../models/sdc-stat.js';
 
 export default async function (req, res) {
-	const upTime = new Date();
 	const [stat, created] = await SdcStat.findOrCreate({
-		where: { date: upTime },
+		where: { date: new Date() },
 		defaults: { ups: 1 },
 	});
 

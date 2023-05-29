@@ -18,7 +18,7 @@ export default class CategoryEnum {
 	}
 }
 
-const categoriesArray = ['guilds/added', 'guilds/removed', 'guilds', 'ups'];
+const categoriesArray = ['sdc/added', 'sdc/removed', 'sdc', 'ups'];
 export const categoriesDictionary = {
 	added: categoriesArray[0],
 	removed: categoriesArray[1],

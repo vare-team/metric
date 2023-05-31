@@ -5,10 +5,10 @@ import setGuildStat from '../controllers/set-guild-stat.js';
 
 const router = new Router();
 
-router.route('/stat').get(asyncRoute(getGuildStat));
-
 router.route('/viewed').put(asyncRoute(setGuildStat));
-router.route('/about').put(asyncRoute(setGuildStat));
-router.route('/joined').put(asyncRoute(setGuildStat));
+
+router.route('/:guildId').get(asyncRoute(getGuildStat));
+router.route('/:guildId/about').put(asyncRoute(setGuildStat));
+router.route('/:guildId/joined').put(asyncRoute(setGuildStat));
 
 export default router;

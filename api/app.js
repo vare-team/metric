@@ -2,6 +2,7 @@ import express from 'express';
 import logger from 'morgan';
 import { AppError, errorCodes, SystemError } from './utils/errors.js';
 import ups from './routes/ups.js';
+import sdc from './routes/sdc.js';
 import guilds from './routes/guilds.js';
 import routeToCategory from './middleware/route-to-category.js';
 import { initializeDbModels } from './utils/db.js';
@@ -47,6 +48,7 @@ app
 	.use(routeToCategory);
 
 app.use('/ups', ups);
+app.use('/sdc', sdc);
 app.use('/guilds', guilds);
 
 // Handle 404 AND 500

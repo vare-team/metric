@@ -1,12 +1,14 @@
 import { Router } from 'express';
 import { asyncRoute } from '../utils/errors.js';
-import getCount from '../controllers/get-count.js';
-import guildsUpdate from '../controllers/guilds-update.js';
+import getGuildStat from '../controllers/get-guild-stat.js';
+import setGuildStat from '../controllers/set-guild-stat.js';
 
 const router = new Router();
 
-router.route('/').get(asyncRoute(getCount));
-router.route('/added').get(asyncRoute(getCount)).put(asyncRoute(guildsUpdate));
-router.route('/removed').get(asyncRoute(getCount)).put(asyncRoute(guildsUpdate));
+router.route('/viewed').put(asyncRoute(setGuildStat));
+
+router.route('/:guildId').get(asyncRoute(getGuildStat));
+router.route('/:guildId/about').put(asyncRoute(setGuildStat));
+router.route('/:guildId/joined').put(asyncRoute(setGuildStat));
 
 export default router;

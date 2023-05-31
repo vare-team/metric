@@ -11,8 +11,6 @@ export default async function ({ body: { guildIds } }, res) {
 	if (!guildIds) throw new AppErrorMissing('guildIds');
 	if (guildIds.length < 1) throw new AppErrorInvalid('guildIds');
 
-	for (const guildId of guildIds) {
-		await setStat(guildId, 'viewed');
-	}
+	await setStat(guildIds, 'viewed');
 	res.end();
 }

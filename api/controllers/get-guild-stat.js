@@ -14,7 +14,7 @@ export default async function ({ params: { guildId }, query: { days } }, res) {
 		result.reduce(
 			(accumulator, current) => ({
 				...accumulator,
-				[current.date]: current[category],
+				[current.date]: current,
 			}),
 			{}
 		)

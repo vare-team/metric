@@ -5,7 +5,7 @@ export default class GuildStat extends Model {
 	static initialize(sequelize) {
 		GuildStat.init(
 			{
-				guildId: { type: DataTypes.STRING },
+				guildId: { type: DataTypes.STRING, primaryKey: true },
 				date: { type: DataTypes.DATEONLY, primaryKey: true },
 
 				viewed: { type: DataTypes.INTEGER.UNSIGNED, defaultValue: 0, allowNull: false },

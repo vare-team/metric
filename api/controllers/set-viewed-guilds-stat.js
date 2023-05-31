@@ -12,7 +12,7 @@ export default async function ({ body: { guildIds } }, res) {
 	if (guildIds.length < 1) throw new AppErrorInvalid('guildIds');
 
 	for (const guildId of guildIds) {
-		await setStat(guildId, ['viewed']);
+		await setStat(guildId, 'viewed');
 	}
 	res.end();
 }

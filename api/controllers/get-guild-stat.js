@@ -1,12 +1,9 @@
-import { AppErrorInvalid, AppErrorMissing } from '../utils/errors.js';
+import { AppErrorMissing } from '../utils/errors.js';
 import GuildStat from '../models/guild-stat.js';
 import { Op } from 'sequelize';
-import statCategories from '../configs/stat-categories.js';
 
-export default async function ({ params: { guildId }, query: { days, category } }, res) {
+export default async function ({ params: { guildId }, query: { days } }, res) {
 	if (!guildId) throw new AppErrorMissing('guildId');
-	if (!category) throw new AppErrorMissing('category');
-	if (!statCategories.includes(category)) throw new AppErrorInvalid('category');
 
 	const result = await GuildStat.findAll({
 		attributes: ['guildId', guildId],

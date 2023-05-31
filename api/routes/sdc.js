@@ -5,7 +5,7 @@ import guildsUpdate from '../controllers/guilds-update.js';
 
 const router = new Router();
 
-router.route('/').get(asyncRoute(getCount));
+router.route('/guilds').get(asyncRoute(getCount));
 router.route('/added').get(asyncRoute(getCount)).put(asyncRoute(guildsUpdate));
 router.route('/removed').get(asyncRoute(getCount)).put(asyncRoute(guildsUpdate));
 

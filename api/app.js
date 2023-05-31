@@ -49,7 +49,7 @@ app
 
 app.use('/ups', ups);
 app.use('/sdc', sdc);
-app.use('/guilds', guilds);
+app.use('/:guildId', guilds);
 
 // Handle 404 AND 500
 app

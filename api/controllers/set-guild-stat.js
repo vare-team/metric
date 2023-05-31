@@ -7,6 +7,6 @@ export default async function ({ category, params: { guildId } }, res) {
 	if (!category) throw new AppErrorMissing('category');
 	if (!statCategories.includes(category)) throw new AppErrorInvalid('category');
 
-	await setStat(guildId, [category]);
+	await setStat(guildId, category);
 	res.end();
 }

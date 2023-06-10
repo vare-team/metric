@@ -2,6 +2,7 @@ import GuildStat from '../models/guild-stat.js';
 import { literal, Op } from 'sequelize';
 
 export default async function (guildIds, category) {
+	guildIds = [...new Set(guildIds)];
 	const date = new Date();
 	if (guildIds.length === 1) {
 		const [model, created] = await GuildStat.findOrCreate({

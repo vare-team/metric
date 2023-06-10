@@ -26,9 +26,9 @@ export default async function (guildIds, category) {
 			toUpdate.push({ [Op.and]: { guildId: id, date: date } });
 			continue;
 		}
-		toCreate.push({ guildId: id, date: date });
+		toCreate.push({ guildId: id, date: date, [category]: 1 });
 	}
 
-	await GuildStat.bulkCreate(toCreate, { defaults: { [category]: 1 } });
+	await GuildStat.bulkCreate(toCreate);
 	await GuildStat.update({ [category]: literal(`${category} + 1`) }, { where: { [Op.or]: toUpdate } });
 }

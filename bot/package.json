@@ -22,7 +22,7 @@
 		"undici": "^5.22.1"
 	},
 	"devDependencies": {
-		"eslint": "^8.41.0",
+		"eslint": "^8.43.0",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-prettier": "^4.2.1",
 		"nodemon": "^2.0.22",

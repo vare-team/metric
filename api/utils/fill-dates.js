@@ -10,7 +10,8 @@ export default function (data, date, defaultValue = 0) {
 
 	while (date.getTime() < now) {
 		const daysStrings = date.toISOString().split('T')[0];
-		data[daysStrings] = data[daysStrings] ?? defaultValue;
+		data[daysStrings] =
+			data[daysStrings] ?? (typeof defaultValue === 'number' ? defaultValue : { ...defaultValue, date: daysStrings });
 		date.setDate(date.getDate() + 1);
 	}
 

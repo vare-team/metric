@@ -17,7 +17,7 @@ export default async function ({ params: { guildId }, query: { days = 0 } }, res
 	const result = dbResult.reduce(
 		(accumulator, current) => ({
 			...accumulator,
-			[current.date]: { ...current.toJSON(), date: undefined },
+			[current.date]: current.toJSON(),
 		}),
 		{}
 	);

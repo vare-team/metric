@@ -4,15 +4,16 @@ import { Op } from 'sequelize';
 import countCategories from '../configs/count-categories.js';
 import fillDates from '../utils/fill-dates.js';
 
-export default async function ({ category, query: { days } }, res) {
-	if (!days) throw new AppErrorMissing('days');
+export default async function ({ category, query: { days = 0 } }, res) {
 	if (!category) throw new AppErrorMissing('category');
 	if (!countCategories.includes(category)) throw new AppErrorInvalid('category');
+	const date = new Date();
+	date.setDate(date.getDate() - days);
 
 	const dbResult = await SdcStat.findAll({
 		attributes: ['date', category],
 		order: [['date', 'DESC']],
-		where: { date: { [Op.gt]: days } },
+		where: { date: { [Op.gt]: date } },
 	});
 
 	const result = dbResult.reduce(
@@ -23,5 +24,5 @@ export default async function ({ category, query: { days } }, res) {
 		{}
 	);
 
-	res.json(fillDates(result, new Date(days)));
+	res.json(fillDates(result, date));
 }

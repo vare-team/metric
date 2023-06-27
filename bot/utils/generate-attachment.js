@@ -8,6 +8,7 @@ import CategoryEnum from '../classes/CategoryEnum.js';
 import getApiInfo from '../services/get-api-info.js';
 
 registerFont('./DINPro.ttf', { family: 'Comic Sans' });
+const dotsCount = 11;
 
 const lines = new Lines(530, 329, 35, 367, 52, 32);
 
@@ -20,10 +21,7 @@ export default async function generateAttachment(text, category) {
 	if (!CategoryEnum.validate(category)) throw 'Category validation error';
 
 	const dates = {};
-	const days = new Date();
-	days.setHours(0, 0, 0);
-
-	const dbResult = await getApiInfo(category, days);
+	const dbResult = await getApiInfo(category, dotsCount);
 	const dbEntries = Object.entries(dbResult);
 
 	for (const [k, v] of dbEntries) {

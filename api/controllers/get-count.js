@@ -8,7 +8,7 @@ export default async function ({ category, query: { days = 0 } }, res) {
 	if (!category) throw new AppErrorMissing('category');
 	if (!countCategories.includes(category)) throw new AppErrorInvalid('category');
 	const date = new Date();
-	date.setDate(date.getDate() - days);
+	date.setDate(date.getDate() - days + 1);
 
 	const dbResult = await SdcStat.findAll({
 		attributes: ['date', category],

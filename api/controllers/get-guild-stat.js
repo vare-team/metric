@@ -6,7 +6,7 @@ import fillDates from '../utils/fill-dates.js';
 export default async function ({ params: { guildId }, query: { days = 0 } }, res) {
 	if (!guildId) throw new AppErrorMissing('guildId');
 	const date = new Date();
-	date.setDate(date.getDate() - days);
+	date.setDate(date.getDate() - days + 1);
 
 	const dbResult = await GuildStat.findAll({
 		attributes: { exclude: ['guildId'] },

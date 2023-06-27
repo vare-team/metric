@@ -12,8 +12,8 @@ export default async function ({ category, query: { days = 0 } }, res) {
 
 	const dbResult = await SdcStat.findAll({
 		attributes: ['date', category],
-		order: [['date', 'DESC']],
-		where: { date: { [Op.gt]: date } },
+		order: ['date'],
+		where: { date: { [Op.gte]: date } },
 	});
 
 	const result = dbResult.reduce(

@@ -3,10 +3,10 @@ import { request } from 'undici';
 /**
  *
  * @param category {string}
- * @param date {Date}
+ * @param days {number}
  * @return {Promise<Record<string, number>>}
  */
-export default async function (category, date) {
-	const { body } = await request(`${process.env.API_URL}/${category}?days=${date.toISOString().split('T')[0]}`);
+export default async function (category, days) {
+	const { body } = await request(`${process.env.API_URL}/${category}?days=${days}`);
 	return await body.json();
 }

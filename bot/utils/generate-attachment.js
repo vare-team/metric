@@ -9,6 +9,7 @@ import getApiInfo from '../services/get-api-info.js';
 
 registerFont('./DINPro.ttf', { family: 'Comic Sans' });
 const dotsCount = 11;
+
 const lines = new Lines(530, 329, 35, 367, 52, 32);
 
 /**
@@ -20,29 +21,12 @@ export default async function generateAttachment(text, category) {
 	if (!CategoryEnum.validate(category)) throw 'Category validation error';
 
 	const dates = {};
-	const days = new Date();
+	const dbResult = await getApiInfo(category, dotsCount);
+	const dbEntries = Object.entries(dbResult);
 
-	days.setHours(0, 0, 0);
-	days.setDate(days.getDate() - dotsCount);
-
-	const dbResult = await getApiInfo(category, days);
-
-	days.setDate(days.getDate() + 1);
-
-	for (let i = 0; i < dotsCount; i++) {
-		let flag = 1;
-		let sort = 0;
-
-		const daysStrings = days.toISOString().split('T')[0];
-		for (const [k, v] of Object.entries(dbResult)) {
-			if (daysStrings !== k) continue;
-
-			flag = 0;
-			sort = v;
-		}
-
-		dates[('00' + days.getDate()).slice(-2) + '.' + ('00' + (days.getMonth() + 1)).slice(-2)] = flag ? 0 : sort;
-		days.setDate(days.getDate() + 1);
+	for (const [k, v] of dbEntries) {
+		const date = new Date(k);
+		dates[('00' + date.getDate()).slice(-2) + '.' + ('00' + (date.getMonth() + 1)).slice(-2)] = v;
 	}
 
 	const canvas = createCanvas(600, 400);
@@ -57,7 +41,7 @@ export default async function generateAttachment(text, category) {
 
 	drawLines(ctx, resolution, dates, lines);
 	drawCircles(ctx, dates, resolution, lines);
-	drawText(text, ctx, canvas.width, resolution, dates, dotsCount, lines);
+	drawText(text, ctx, canvas.width, resolution, dates, dbEntries.length, lines);
 
 	return canvas.toBuffer();
 }
